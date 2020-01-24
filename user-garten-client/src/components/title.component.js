@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import Conditions from "./conditions";
+import ResultSizes from "./result-sizes";
 
 export default class Title extends Component {
 
@@ -33,6 +33,10 @@ export default class Title extends Component {
         this.props.callback();
     }
 
+    onCreate = (event) => {
+        this.props.callback();
+    }
+
     updateQueryTextValue = (event) => {
         this.setState({ queryText: event.target.value });
         localStorage.setItem("serler_queryText", JSON.stringify(event.target.value));
@@ -49,8 +53,8 @@ export default class Title extends Component {
                 <Form.Row>
                     <Col>
                         <TextField
-                            id="title-field"
-                            label="Title"
+                            id="first-name-field"
+                            label="First name"
                             value={this.state.queryText}
                             onChange={this.updateQueryTextValue}
                             onSubmit={this.onSearch}
@@ -59,24 +63,36 @@ export default class Title extends Component {
                             fullWidth
                         />
                     </Col>
-                    <Col xs lg="3">
+                    <Col>
                         <TextField
-                            id="outlined-select-condition"
+                            id="last-name-field"
+                            label="Last name"
+                            value={this.state.queryText}
+                            onChange={this.updateQueryTextValue}
+                            onSubmit={this.onSearch}
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                        />
+                    </Col>
+                    <Col xs lg="2">
+                        <TextField
+                            id="result-sile-list"
                             select
-                            label="Condition"
+                            label="Result max size"
                             SelectProps={{
                                 native: true,
                                 MenuProps: {
                                 },
                             }}
-                            helperText="Please specify the condition"
+                            helperText="Count of records"
                             margin="normal"
                             variant="outlined"
                             fullWidth
                             value={this.state.condition}
                             onChange={this.onConditionChange}
                         >
-                            {Conditions.map(option => (
+                            {ResultSizes.map(option => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
                                 </option>
@@ -88,6 +104,11 @@ export default class Title extends Component {
                     onClick={this.onSearch}
                 >
                     Search
+                </Button>
+                <Button variant="contained" color="primary"
+                    onClick={this.onCreate}
+                >
+                    Create
                 </Button>
             </div>
         );
