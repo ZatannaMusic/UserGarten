@@ -8,72 +8,39 @@ export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            queryText: "",
-            evidence: [],
+            firstName: "",
+            lastName: "",
+            maxResult: "all",
             columns: [{
                 dataField: 'title',
                 text: 'Title',
                 sort: true
             }, {
-                dataField: 'authors',
-                text: 'Authors',
-                formatter: a => a.map(ai => ai.lastName + ', ' + ai.firstName).join('; '),
+                dataField: 'first_name',
+                text: 'First name',
                 sort: true
             }, {
-                dataField: 'keywords',
-                text: 'Keywords',
-                formatter: k => k.join(', '),
+                dataField: 'last_name',
+                text: 'Last name',
                 sort: true
-            },
-            {
-                dataField: 'date',
-                text: 'Publish Date',
-                formatter: a => {
-                    try {
-                        return new Intl.DateTimeFormat('en-NZ', {
-                            year: 'numeric',
-                            month: 'short'
-                        }).format(new Date(a));
-                    }
-                    catch {
-                        return 'N/A';
-                    }
-                },
+            }, {
+                dataField: 'birth_date',
+                text: 'Birth date',
                 sort: true
-            },
-            {
-                dataField: 'method',
-                text: 'SE method',
+            }, {
+                dataField: 'phone',
+                text: 'Phone',
                 sort: true
-            },
-            {
-                dataField: 'researchQuestion',
-                text: 'Research Question',
-                sort: true
-            },
-            {
-                dataField: 'result',
-                text: 'Result',
-                sort: true
-            },
-            ],
+            }, {
+                dataField: 'photo',
+                text: 'Photo',
+                sort: false
+            },],
             searchResult: []
         }
     }
 
     onSearch = () => {
-        // Get search criteria
-
-        // -- Title
-
-        // -- Calendar
-
-        // -- Filters
-
-
-        // Prepare query
-
-        // Run query
         axios.get('/api/v1/evidences')
             .then(response => {
                 this.setState({ searchResult: response.data });

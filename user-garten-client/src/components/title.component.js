@@ -10,22 +10,29 @@ export default class Title extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            queryText: "",
-            condition: "Contains"
+            firstName: "",
+            lastName: "",
+            maxResult: "all"
         }
     }
 
     componentDidMount = () => {
-        let queryTextData = localStorage.getItem("serler_queryText");
-        if (queryTextData != null) {
-            let queryText = JSON.parse(queryTextData);
-            this.setState({ queryText: queryText });
+        let firstNameData = localStorage.getItem("usergarten_firstName");
+        if (firstNameData != null) {
+            let firstName = JSON.parse(firstNameData);
+            this.setState({ firstName: firstName });
         }
 
-        let conditionData = localStorage.getItem("serler_condition");
-        if (conditionData != null) {
-            let condition = JSON.parse(conditionData);
-            this.setState({ condition: condition });
+        let lastNameData = localStorage.getItem("usergarten_lastName");
+        if (lastNameData != null) {
+            let lastName = JSON.parse(lastNameData);
+            this.setState({ lastName: lastName });
+        }
+
+        let maxResultData = localStorage.getItem("usergarten_maxResult");
+        if (maxResultData != null) {
+            let maxResult = JSON.parse(maxResultData);
+            this.setState({ maxResult: maxResult });
         }
     }
 
@@ -37,14 +44,19 @@ export default class Title extends Component {
         this.props.callback();
     }
 
-    updateQueryTextValue = (event) => {
-        this.setState({ queryText: event.target.value });
-        localStorage.setItem("serler_queryText", JSON.stringify(event.target.value));
+    updateFirstNameValue = (event) => {
+        this.setState({ firstName: event.target.value });
+        localStorage.setItem("usergarten_firstName", JSON.stringify(event.target.value));
     }
 
-    onConditionChange = (event) => {
-        this.setState({ condition: event.target.value });
-        localStorage.setItem("serler_condition", JSON.stringify(event.target.value));
+    updateLastNameValue = (event) => {
+        this.setState({ lastName: event.target.value });
+        localStorage.setItem("usergarten_lastName", JSON.stringify(event.target.value));
+    }
+
+    onMaxResultChange = (event) => {
+        this.setState({ maxResult: event.target.value });
+        localStorage.setItem("usergarten_maxResult", JSON.stringify(event.target.value));
     }
 
     render() {
@@ -55,8 +67,8 @@ export default class Title extends Component {
                         <TextField
                             id="first-name-field"
                             label="First name"
-                            value={this.state.queryText}
-                            onChange={this.updateQueryTextValue}
+                            value={this.state.firstName}
+                            onChange={this.updateFirstNameValue}
                             onSubmit={this.onSearch}
                             margin="normal"
                             variant="outlined"
@@ -67,8 +79,8 @@ export default class Title extends Component {
                         <TextField
                             id="last-name-field"
                             label="Last name"
-                            value={this.state.queryText}
-                            onChange={this.updateQueryTextValue}
+                            value={this.state.lastName}
+                            onChange={this.updateLastNameValue}
                             onSubmit={this.onSearch}
                             margin="normal"
                             variant="outlined"
@@ -89,8 +101,8 @@ export default class Title extends Component {
                             margin="normal"
                             variant="outlined"
                             fullWidth
-                            value={this.state.condition}
-                            onChange={this.onConditionChange}
+                            value={this.state.maxResult}
+                            onChange={this.onMaxResultChange}
                         >
                             {ResultSizes.map(option => (
                                 <option key={option.value} value={option.value}>
@@ -100,16 +112,22 @@ export default class Title extends Component {
                         </TextField>
                     </Col>
                 </Form.Row>
-                <Button variant="contained" color="primary"
-                    onClick={this.onSearch}
-                >
-                    Search
-                </Button>
-                <Button variant="contained" color="primary"
-                    onClick={this.onCreate}
-                >
-                    Create
-                </Button>
+                <Form.Row>
+                    <Col xs lg="1">
+                        <Button variant="contained" color="primary"
+                            onClick={this.onSearch}
+                        >
+                            Search
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button variant="contained" color="primary"
+                            onClick={this.onCreate}
+                        >
+                            Create
+                        </Button>
+                    </Col>
+                </Form.Row>
             </div>
         );
     }
