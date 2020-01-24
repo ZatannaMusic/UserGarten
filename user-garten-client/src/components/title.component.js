@@ -37,11 +37,11 @@ export default class Title extends Component {
     }
 
     onSearch = (event) => {
-        this.props.callback();
+        this.props.search_callback();
     }
 
     onCreate = (event) => {
-        this.props.callback();
+        this.props.create_callback();
     }
 
     updateFirstNameValue = (event) => {
