@@ -8,9 +8,6 @@ export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: "",
-            lastName: "",
-            maxResult: "all",
             columns: [{
                 dataField: 'title',
                 text: 'Title',
@@ -40,49 +37,23 @@ export default class UserList extends Component {
         }
     }
 
-    componentDidMount = () => {
-        let firstNameData = localStorage.getItem("usergarten_firstName");
-        if (firstNameData != null) {
-            let firstName = JSON.parse(firstNameData);
-            this.setState({ firstName: firstName });
-        }
-
-        let lastNameData = localStorage.getItem("usergarten_lastName");
-        if (lastNameData != null) {
-            let lastName = JSON.parse(lastNameData);
-            this.setState({ lastName: lastName });
-        }
-
-        let maxResultData = localStorage.getItem("usergarten_maxResult");
-        if (maxResultData != null) {
-            let maxResult = JSON.parse(maxResultData);
-            this.setState({ maxResult: maxResult });
-        }
-    }
-
-    getFilterValues = () => {
-        let firstNameData = localStorage.getItem("usergarten_firstName");
-        if (firstNameData != null) {
-            let firstName = JSON.parse(firstNameData);
-            this.setState({ firstName: firstName });
-        }
-
-        let lastNameData = localStorage.getItem("usergarten_lastName");
-        if (lastNameData != null) {
-            let lastName = JSON.parse(lastNameData);
-            this.setState({ lastName: lastName });
-        }
-
-        let maxResultData = localStorage.getItem("usergarten_maxResult");
-        if (maxResultData != null) {
-            let maxResult = JSON.parse(maxResultData);
-            this.setState({ maxResult: maxResult });
-        }
-    }
-
     onSearch = () => {
-        this.getFilterValues();
-        alert("onSearch: " + this.state.firstName + "|" + this.state.lastName + "|" + this.state.maxResult);
+        let firstNameData = localStorage.getItem("usergarten_firstName");
+        if (firstNameData != null) {
+            var firstName = JSON.parse(firstNameData);
+        }
+
+        let lastNameData = localStorage.getItem("usergarten_lastName");
+        if (lastNameData != null) {
+            var lastName = JSON.parse(lastNameData);
+        }
+
+        let maxResultData = localStorage.getItem("usergarten_maxResult");
+        if (maxResultData != null) {
+            var maxResult = JSON.parse(maxResultData);
+        }
+
+        alert("onSearch: " + firstName + "|" + lastName + "|" + maxResult);
         /*
         axios.get('/api/v1/evidences')
             .then(response => {
@@ -95,8 +66,7 @@ export default class UserList extends Component {
     }
 
     onCreate = () => {
-        this.getFilterValues();
-        alert("onCreate: " + this.state.firstName + "|" + this.state.lastName + "|" + this.state.maxResult);
+        alert("onCreate()");
         /*
         axios.get('/api/v1/evidences')
             .then(response => {

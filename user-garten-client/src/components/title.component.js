@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import ResultSizes from "./result-sizes";
@@ -46,7 +47,9 @@ export default class Title extends Component {
 
     updateFirstNameValue = (event) => {
         this.setState({ firstName: event.target.value });
+        console.log("localStorage.setItem: " + event.target.value);
         localStorage.setItem("usergarten_firstName", JSON.stringify(event.target.value));
+        console.log("Update: " + event.target.value);
     }
 
     updateLastNameValue = (event) => {
@@ -121,7 +124,7 @@ export default class Title extends Component {
                         </Button>
                     </Col>
                     <Col>
-                        <Button variant="contained" color="primary"
+                        <Button variant="contained" color="secondary"
                             onClick={this.onCreate}
                         >
                             Create
