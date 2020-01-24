@@ -12,7 +12,7 @@ export default class UserList extends Component {
                 <header className="App-header">
                     <h1>
                         User List
-          </h1>
+                  </h1>
                 </header>
             </div>
         );
