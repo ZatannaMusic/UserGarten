@@ -54,16 +54,18 @@ export default class UserList extends Component {
             var maxResult = JSON.parse(maxResultData);
         }
 
-        alert("onSearch: " + firstName + "|" + lastName + "|" + maxResult);
-        /*
-        axios.get('/api/v1/evidences')
+        var apiUrl = process.env.REACT_APP_UNSAFE_API_URL;
+        var command = apiUrl + process.env.REACT_APP_API_OBJECT_NAME;
+
+        //alert("Web API command: " + command);
+
+        axios.get(command)
             .then(response => {
                 this.setState({ searchResult: response.data });
             })
             .catch(function (error) {
                 console.log(error);
             });
-            */
     }
 
     onCreate = () => {
@@ -79,7 +81,7 @@ export default class UserList extends Component {
             */
     }
 
-    /*
+
     render() {
         return (
             <div>
@@ -92,13 +94,14 @@ export default class UserList extends Component {
             </div>
         );
     }
-    */
 
-    render() {
-        return (
-            <div>
-                <UserEditor />
-            </div>
-        );
-    }
+    /*
+        render() {
+            return (
+                <div>
+                    <UserEditor />
+                </div>
+            );
+        }
+        */
 }
