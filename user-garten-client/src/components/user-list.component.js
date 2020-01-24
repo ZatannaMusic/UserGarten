@@ -54,7 +54,9 @@ export default class UserList extends Component {
             var maxResult = JSON.parse(maxResultData);
         }
 
-        alert("onSearch: " + firstName + "|" + lastName + "|" + maxResult);
+        var apiUrl = process.env.REACT_APP_UNSAFE_API_URL;
+
+        alert("onSearch: " + firstName + "|" + lastName + "|" + maxResult + "|" + apiUrl);
         /*
         axios.get('/api/v1/evidences')
             .then(response => {
@@ -79,7 +81,7 @@ export default class UserList extends Component {
             */
     }
 
-    /*
+
     render() {
         return (
             <div>
@@ -92,13 +94,14 @@ export default class UserList extends Component {
             </div>
         );
     }
-    */
 
-    render() {
-        return (
-            <div>
-                <UserEditor />
-            </div>
-        );
-    }
+    /*
+        render() {
+            return (
+                <div>
+                    <UserEditor />
+                </div>
+            );
+        }
+        */
 }
