@@ -55,17 +55,17 @@ export default class UserList extends Component {
         }
 
         var apiUrl = process.env.REACT_APP_UNSAFE_API_URL;
+        var command = apiUrl + process.env.REACT_APP_API_OBJECT_NAME;
 
-        alert("onSearch: " + firstName + "|" + lastName + "|" + maxResult + "|" + apiUrl);
-        /*
-        axios.get('/api/v1/evidences')
+        //alert("Web API command: " + command);
+
+        axios.get(command)
             .then(response => {
                 this.setState({ searchResult: response.data });
             })
             .catch(function (error) {
                 console.log(error);
             });
-            */
     }
 
     onCreate = () => {
