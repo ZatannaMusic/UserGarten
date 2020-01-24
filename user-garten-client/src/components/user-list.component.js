@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
 import Title from "./title.component";
+import UserEditor from "./user-editor.component";
 
 export default class UserList extends Component {
 
@@ -78,6 +79,7 @@ export default class UserList extends Component {
             */
     }
 
+    /*
     render() {
         return (
             <div>
@@ -87,6 +89,15 @@ export default class UserList extends Component {
                         data={this.state.searchResult}
                         columns={this.state.columns} />
                 </div>
+            </div>
+        );
+    }
+    */
+
+    render() {
+        return (
+            <div>
+                <UserEditor />
             </div>
         );
     }
