@@ -14,15 +14,15 @@ export default class UserList extends Component {
                 text: 'Title',
                 sort: true
             }, {
-                dataField: 'first_name',
+                dataField: 'firstName',
                 text: 'First name',
                 sort: true
             }, {
-                dataField: 'last_name',
-                text: 'Last name',
+                dataField: 'lastName',
+                    text: 'Last name',
                 sort: true
             }, {
-                dataField: 'birth_date',
+                dataField: 'birthDate',
                 text: 'Birth date',
                 sort: true
             }, {
@@ -39,6 +39,7 @@ export default class UserList extends Component {
     }
 
     onSearch = () => {
+        // Getting parameters
         let firstNameData = localStorage.getItem("usergarten_firstName");
         if (firstNameData != null) {
             var firstName = JSON.parse(firstNameData);
@@ -54,11 +55,11 @@ export default class UserList extends Component {
             var maxResult = JSON.parse(maxResultData);
         }
 
+        // Prepare command
         var apiUrl = process.env.REACT_APP_SAFE_API_URL;
         var command = apiUrl + process.env.REACT_APP_API_OBJECT_NAME;
 
-        //alert("Web API command: " + command);
-
+        // Web API call
         axios.get(command)
             .then(response => {
                 this.setState({ searchResult: response.data });
@@ -70,38 +71,18 @@ export default class UserList extends Component {
 
     onCreate = () => {
         alert("onCreate()");
-        /*
-        axios.get('/api/v1/evidences')
-            .then(response => {
-                this.setState({ searchResult: response.data });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            */
     }
-
 
     render() {
         return (
             <div>
                 <Title search_callback={this.onSearch} create_callback={this.onCreate} />
                 <div className="py-3">
-                    <BootstrapTable keyField='_id'
+                    <BootstrapTable keyField='id'
                         data={this.state.searchResult}
                         columns={this.state.columns} />
                 </div>
             </div>
         );
     }
-
-    /*
-        render() {
-            return (
-                <div>
-                    <UserEditor />
-                </div>
-            );
-        }
-        */
 }
