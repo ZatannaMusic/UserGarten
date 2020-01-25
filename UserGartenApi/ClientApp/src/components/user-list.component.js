@@ -54,7 +54,7 @@ export default class UserList extends Component {
             var maxResult = JSON.parse(maxResultData);
         }
 
-        var apiUrl = process.env.REACT_APP_UNSAFE_API_URL;
+        var apiUrl = process.env.REACT_APP_SAFE_API_URL;
         var command = apiUrl + process.env.REACT_APP_API_OBJECT_NAME;
 
         //alert("Web API command: " + command);

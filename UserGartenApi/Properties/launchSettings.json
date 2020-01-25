@@ -20,7 +20,7 @@
     "UserGartenApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "user",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
