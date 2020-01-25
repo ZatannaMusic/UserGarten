@@ -44,23 +44,33 @@ export default class UserList extends Component {
         if (firstNameData != null) {
             var firstName = JSON.parse(firstNameData);
         }
+        if (firstName == undefined) {
+            firstName = "";
+        }
 
         let lastNameData = localStorage.getItem("usergarten_lastName");
         if (lastNameData != null) {
             var lastName = JSON.parse(lastNameData);
+        }
+        if (lastName == undefined) {
+            lastName = "";
         }
 
         let maxResultData = localStorage.getItem("usergarten_maxResult");
         if (maxResultData != null) {
             var maxResult = JSON.parse(maxResultData);
         }
+        if (maxResult === "all") {
+            maxResult = 0;
+        }
 
         // Prepare command
         var apiUrl = process.env.REACT_APP_SAFE_API_URL;
         var command = apiUrl + process.env.REACT_APP_API_OBJECT_NAME;
+        var parameters = `?firstName=${firstName}&lastName=${lastName}&maxResult=${maxResult}`;
 
         // Web API call
-        axios.get(command)
+        axios.get(command + parameters)
             .then(response => {
                 this.setState({ searchResult: response.data });
             })
