@@ -83,7 +83,7 @@ namespace UserGartenApi
                 // Create the Db if it doesn't exist and applies any pending migration.
                 if (!dbContext.Database.EnsureCreated())
                 {
-                    //dbContext.Database.Migrate();
+                    dbContext.Database.Migrate();
                 }
                 // Seed the Db.
                 DbSeeder.Seed(dbContext);
