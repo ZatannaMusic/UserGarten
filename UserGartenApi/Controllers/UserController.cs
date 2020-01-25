@@ -37,6 +37,9 @@ namespace UserGartenApi.Controllers
         {
             try
             {
+                var image = userViewModel.Base64Image == null ? null : Convert.FromBase64String(userViewModel.Base64Image);
+                var thumbImage = userViewModel.Base64ThumbImage == null ? null : Convert.FromBase64String(userViewModel.Base64ThumbImage);
+
                 var newUser = new User
                 {
                     FirstName = userViewModel.FirstName,
@@ -46,7 +49,9 @@ namespace UserGartenApi.Controllers
                     Title = new UserTitle
                     {
                         Name = userViewModel.Title
-                    }
+                    },
+                    Image = image,
+                    ThumbImage = thumbImage
                 };
                 _repository.Create(newUser);
                 return new OkResult();
@@ -115,11 +120,12 @@ namespace UserGartenApi.Controllers
                         Phone = user.Phone,
                         Title = user.Title.Name,
                         ThumbImageUrl = user.ThumbImageUrl,
-                        ImageUrl = user.ImageUrl
+                        ImageUrl = user.ImageUrl,
 
                         // The assignment bellow is off because it causes the huge memory usage.
                         // It needs to accomplish refactoring the architectural decision.
                         //Base64Image = Convert.ToBase64String(System.IO.File.ReadAllBytes(user.ThumbImageUrl))
+                        Base64ThumbImage = user.ThumbImage == null ? null : Convert.ToBase64String(user.ThumbImage)
                     };
                     userViewModelList.Add(userViewModel);
                 }
@@ -158,8 +164,11 @@ namespace UserGartenApi.Controllers
                     Phone = user.Phone,
                     Title = user.Title.Name,
                     ThumbImageUrl = user.ThumbImageUrl,
+                    //Base64ThumbImage = user.ImageUrl == null ? null : Convert.ToBase64String(System.IO.File.ReadAllBytes(user.ThumbImageUrl)),
+                    Base64ThumbImage = user.ThumbImage == null ? null : Convert.ToBase64String(user.ThumbImage),
                     ImageUrl = user.ImageUrl,
-                    Base64Image = user.ImageUrl == null ? null : Convert.ToBase64String(System.IO.File.ReadAllBytes(user.ImageUrl))
+                    //Base64Image = user.ImageUrl == null ? null : Convert.ToBase64String(System.IO.File.ReadAllBytes(user.ImageUrl))
+                    Base64Image = user.Image == null ? null : Convert.ToBase64String(user.Image),
                 };
 
                 return Ok(userViewModel);
