@@ -29,11 +29,11 @@ export default class UserList extends Component {
                 dataField: 'phone',
                 text: 'Phone',
                 sort: true
-            }, {
+            }, /*{
                 dataField: 'photo',
                 text: 'Photo',
                 sort: false
-            },],
+            },*/],
             searchResult: []
         }
     }

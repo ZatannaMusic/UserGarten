@@ -73,6 +73,7 @@ export default class Title extends Component {
                             value={this.state.firstName}
                             onChange={this.updateFirstNameValue}
                             onSubmit={this.onSearch}
+                            helperText="Oleg00"
                             margin="normal"
                             variant="outlined"
                             fullWidth
@@ -85,6 +86,7 @@ export default class Title extends Component {
                             value={this.state.lastName}
                             onChange={this.updateLastNameValue}
                             onSubmit={this.onSearch}
+                            helperText="Kazantsev00"
                             margin="normal"
                             variant="outlined"
                             fullWidth
